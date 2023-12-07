@@ -1,0 +1,22 @@
+BOARD = GENERIC_RP_RP2040
+MCU = RP2040
+I2C_DRIVER = I2CD1
+
+OLED_ENABLE = yes
+ENCODER_ENABLE = no
+CONSOLE_ENABLE = no
+EXTRAKEY_ENABLE = no
+
+WPM_ENABLE = yes
+
+
+
+
+MOUSEKEY_ENABLE = yes       # Mouse keys
+EXTRAKEY_ENABLE = yes       # Audio control and System control
+
+POINTING_DEVICE_ENABLE = yes
+POINTING_DEVICE_DRIVER = cirque_pinnacle_i2c # DIY version uses I2C.
+CIRQUE_PINNACLE_DIAMETER_MM = 40
+
+SPLIT_KEYBOARD = yes
