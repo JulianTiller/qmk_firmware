@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 bool mouse_jiggle_mode = false;
 
 enum custom_keycodes {
-  MOUSEJIGGLERMACRO
+  MOUSEJIGGLERMACRO = 0x2002 //https://github.com/qmk/qmk_firmware/blob/master/quantum/quantum_keycodes.h#L35 ...just picked some random number
 };
 
 enum corne_layers {
@@ -45,14 +45,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     KC_LCTL, DE_Y, DE_X, DE_C, DE_V, DE_B,      DE_N, DE_M, DE_COMM, DE_DOT,  DE_MINS, KC_ESC,
                                     KC_LALT, MO(_SYM), KC_SPC,                  KC_ENT, MO(_SYM), KC_RALT
                                 ),
+
         [1] = LAYOUT_split_3x6_3(   KC_TAB,  KC_Q, KC_W, KC_E, KC_R, KC_T,      KC_Y, KC_U, KC_I,    KC_O,    KC_P,    KC_BSPC,
-                                    KC_LSFT, KC_A, KC_S, KC_D, KC_F, KC_G,      KC_H, KC_J, KC_K,    KC_L,    KC_HASH, KC_LGUI,
+                                    KC_LSFT, KC_A, KC_S, KC_D, KC_F, KC_G,      KC_H, KC_J, KC_K,    KC_L,    KC_HASH, KC_RSFT,
                                     KC_LCTL, KC_Z, KC_X, KC_C, KC_V, KC_B,      KC_N, KC_M, KC_COMM, KC_DOT,  KC_MINS, KC_ESC,
                                     KC_LALT, MO(_SYM), KC_SPC,                  KC_ENT, MO(_SYM), KC_RALT
                                 ),
-        [2] = LAYOUT_split_3x6_3(   KC_TAB,  KC_Q, KC_W, KC_E, KC_R, KC_T,      KC_Y, KC_U, KC_I,    KC_O,    KC_P,    KC_BSPC,
-                                    KC_LSFT, KC_A, KC_S, KC_D, KC_F, KC_G,      KC_H, KC_J, KC_K,    KC_L,    KC_HASH, KC_LGUI,
-                                    KC_LCTL, KC_Z, KC_X, KC_C, KC_V, KC_B,      KC_N, KC_M, KC_COMM, KC_DOT,  KC_MINS, KC_ESC,
+
+        [2] = LAYOUT_split_3x6_3(   KC_TAB,  DE_Q, DE_W, DE_F, DE_P, DE_G,      DE_J, DE_L, DE_U,    DE_Y,    DE_HASH,  KC_BSPC,
+                                    KC_LSFT, DE_A, DE_R, DE_S, DE_T, DE_D,      DE_H, DE_N, DE_E,    DE_I,    DE_O,     KC_RSFT,
+                                    KC_LCTL, DE_Z, DE_X, DE_C, DE_V, DE_B,      DE_K, DE_M, DE_COMM, DE_DOT,  DE_MINS,  KC_ESC,
                                     KC_LALT, MO(_SYM), KC_SPC,                  KC_ENT, MO(_SYM), KC_RALT
                                 ),
 
@@ -290,7 +292,6 @@ static void print_status_narrow(void) {
 
     // caps lock
     oled_set_cursor(0, 4);
-    //oled_write("CPSLK", led_usb_state.caps_lock);
     if(led_usb_state.caps_lock){
         oled_write("CPSLK", 1);
     }else{
@@ -299,7 +300,6 @@ static void print_status_narrow(void) {
 
     // mousejiggle
     oled_set_cursor(0, 5);
-    //oled_write("CPSLK", led_usb_state.caps_lock);
     if(mouse_jiggle_mode){
         oled_write("JIGGL", 1);
     }else{
